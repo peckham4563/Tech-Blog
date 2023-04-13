@@ -1,44 +1,24 @@
-<!-- views/signup.handlebars -->
-<form id="signup-form">
-  <div>
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
-  </div>
-  <div>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-  </div>
-  <div>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-  </div>
-  <button type="submit">Sign up</button>
-</form>
+{{> layouts/main}}
 
-<script>
-  const signupFormHandler = async (event) => {
-    event.preventDefault();
+{{#content "title"}}
+  Signup
+{{/content}}
 
-    const username = document.querySelector('#username-signup').value.trim();
-    const email = document.querySelector('#email-signup').value.trim();
-    const password = document.querySelector('#password-signup').value.trim();
-
-    if (username && email && password) {
-      const response = await fetch('/api/users', {
-        method: 'POST',
-        body: JSON.stringify({ username, email, password }),
-        headers: { 'Content-Type': 'application/json' },
-      });
-
-      if (response.ok) {
-        document.location.replace('/dashboard');
-      } else {
-        alert('Failed to sign up.');
-      }
-    }
-  };
-
-  document
-    .querySelector('#signup-form')
-    .addEventListener('submit', signupFormHandler);
-</script>
+{{#content "content"}}
+  <h1>Signup</h1>
+  <form id="signup-form">
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+    <button type="submit">Sign up</button>
+  </form>
+{{/content}}
